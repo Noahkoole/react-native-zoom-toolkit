@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
-import { useVector } from '../../../src/commons/hooks/useVector';
+import React, { createContext, type PropsWithChildren } from 'react';
 import { useSharedValue, type SharedValue } from 'react-native-reanimated';
+import { useVector } from '../../../src/commons/hooks/useVector';
 import { maxDimension, theme } from '../constants';
 
 export type Context = {
@@ -13,7 +13,9 @@ export type Context = {
 
 export const ReflectionContext = createContext<Context>({} as Context);
 
-export const ReflectionProvider: React.FC = ({ children }) => {
+export const ReflectionProvider: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const position = useVector(-1 * maxDimension, -1 * maxDimension);
   const width = useSharedValue<number>(0);
   const height = useSharedValue<number>(0);

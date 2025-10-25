@@ -1,8 +1,14 @@
-import React, { forwardRef } from 'react';
+import React, {
+  forwardRef,
+  type ForwardedRef,
+  type PropsWithoutRef,
+} from 'react';
 import { type CropZoomProps } from '../../components/crop/types';
 
 export default function withCropValidation<T, P extends CropZoomProps>(
-  Component: React.ComponentType<P>
+  Component: React.ComponentType<
+    PropsWithoutRef<P> & { reference: ForwardedRef<T> }
+  >
 ) {
   return forwardRef<T, P>((props, ref) => {
     const { minScale, maxScale } = props;

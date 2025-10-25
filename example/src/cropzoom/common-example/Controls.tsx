@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Pressable, ActivityIndicator } from 'react-native';
-import { FlipType, SaveFormat, ImageManipulator } from 'expo-image-manipulator';
-import { createAlbumAsync, createAssetAsync } from 'expo-media-library';
-import { type CropZoomRefType } from 'react-native-zoom-toolkit';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { FlipType, ImageManipulator, SaveFormat } from 'expo-image-manipulator';
+import { createAlbumAsync, createAssetAsync } from 'expo-media-library';
+import React, { useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { type CropZoomRefType } from 'react-native-zoom-toolkit';
 
-import { activeColor, baseColor } from '../commons/contants';
 import { theme } from '../../constants';
+import { activeColor, baseColor } from '../commons/contants';
 
 type ControlProps = {
   uri: string;
   setCrop: (uri: string | undefined) => void;
-  cropRef: React.RefObject<CropZoomRefType>;
+  cropRef: React.RefObject<CropZoomRefType | null>;
 };
 
 const Controls: React.FC<ControlProps> = ({ uri, cropRef, setCrop }) => {

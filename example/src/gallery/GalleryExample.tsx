@@ -1,3 +1,9 @@
+import {
+  getAssetsAsync,
+  MediaType,
+  requestPermissionsAsync,
+  type Asset,
+} from 'expo-media-library';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, {
@@ -6,18 +12,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {
-  getAssetsAsync,
-  requestPermissionsAsync,
-  MediaType,
-  type Asset,
-} from 'expo-media-library';
 import { Gallery, type GalleryRefType } from 'react-native-zoom-toolkit';
 
-import GalleryImage from './GalleryImage';
-import VideoControls from './controls/VideoControls';
-import GalleryVideo from './GalleryVideo';
 import { StatusBar } from 'expo-status-bar';
+import VideoControls from './controls/VideoControls';
+import GalleryImage from './GalleryImage';
+import GalleryVideo from './GalleryVideo';
 
 type SizeVector = { width: number; height: number };
 
@@ -56,7 +56,10 @@ const GalleryExample = () => {
     [activeIndex, progress, isSeeking]
   );
 
-  const keyExtractor = useCallback((item, index) => `${item.uri}-${index}`, []);
+  const keyExtractor = useCallback(
+    (item: Asset, index: number) => `${item.uri}-${index}`,
+    []
+  );
 
   // Toogle video controls opacity if the current item is a video
   const onTap = useCallback(() => {

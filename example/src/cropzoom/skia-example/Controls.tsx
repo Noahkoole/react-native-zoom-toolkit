@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Pressable, ActivityIndicator } from 'react-native';
-import { withTiming, type SharedValue } from 'react-native-reanimated';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import {
-  rect,
-  type SkImage,
-  Skia,
   FilterMode,
   MipmapMode,
+  rect,
+  Skia,
+  type SkImage,
 } from '@shopify/react-native-skia';
 import { cacheDirectory, writeAsStringAsync } from 'expo-file-system';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { withTiming, type SharedValue } from 'react-native-reanimated';
 import type { CropZoomRefType } from 'react-native-zoom-toolkit';
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
+import { theme } from '../../constants';
 import {
-  baseColor,
   activeColor,
+  baseColor,
+  blackAndWhite,
   buttonSize,
   indentity,
-  blackAndWhite,
 } from '../commons/contants';
 import EffectPreview from './EffectPreview';
-import { theme } from '../../constants';
 
 type EffectIndicatorProps = {
   image: SkImage;
   progress: SharedValue<number>;
-  cropRef: React.RefObject<CropZoomRefType>;
+  cropRef: React.RefObject<CropZoomRefType | null>;
   setCrop: (uri: string | undefined) => void;
 };
 
